@@ -1,4 +1,0 @@
-foo[Kbar
-foo[0Kbar
-foo[1Kbar
-foo[2Kbar

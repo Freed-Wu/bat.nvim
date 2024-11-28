@@ -1,0 +1,3 @@
+#!/usr/bin/env -S nvim --headless -l
+vim.cmd.edit(arg[1])
+require("bat").cat_mode()

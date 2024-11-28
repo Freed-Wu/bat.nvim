@@ -1,9 +1,6 @@
 -- Neovim defines this object but luacheck doesn't know it.  So we define a
 -- shortcut and tell luacheck to ignore it.
-local vim = vim      -- luacheck: ignore
 local nvim = vim.api -- luacheck: ignore
-
-local util = require("nvimpager/util")
 
 -- These variables will be initialized during the first call to cat_mode()
 --
@@ -176,11 +173,6 @@ local function highlight()
   -- Detect an empty buffer.
   if check_empty() then
     return
-  elseif util.check_escape_sequences() then
-    for _, line in ipairs(nvim.nvim_buf_get_lines(0, 0, -1, false)) do
-      io.write(line, '\n')
-    end
-    return
   end
   local conceallevel = nvim.nvim_win_get_option(0, 'conceallevel')
   local syntax_id_conceal = nvim.nvim_call_function('hlID', {'Conceal'})
@@ -281,7 +273,6 @@ local function cat_mode()
     nvim.nvim_command('next')
     highlight()
   end
-  nvim.nvim_command('quitall!')
 end
 
 return {
